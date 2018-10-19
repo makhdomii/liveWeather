@@ -1,0 +1,71 @@
+.container{
+  @include viewport(small){
+    min-width: 750px;
+  }
+  @include viewport(medium){
+    min-width: 970px;
+  }
+  @include viewport(large){
+    min-width:1170px;
+  }
+}
+.img-cover {
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  image-rendering: -webkit-optimize-contrast;
+}
+#root{
+  background-image:url('../Assets/img/bg.jpg');
+	min-height:100vh;
+	display:flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	@extend .img-cover;
+}
+.none-decoration:hover{
+  text-decoration: none;
+}
+// .weather-icon{
+//   width: 40px;
+//   height: 40px;
+// }
+.temp-icon{
+  width:20px;
+  height:20px;
+}
+.loading {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin: -60px 0 0 -60px;
+  background: rgba(146, 146, 146, 0.4);
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+  border: 10px solid #19bee1;
+  
+}
+.loading:after {
+  content: '';
+  background: trasparent;
+  width: 140%;
+  height: 140%;
+  position: absolute;
+  border-radius: 100%;
+  top: -20%;
+  left: -20%;
+  opacity: 0.7;
+  box-shadow: rgba(42, 150, 238, 0.6) -4px -5px 3px -3px;
+  animation: rotate 2s infinite linear;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotateZ(0deg);
+  }
+  100% {
+    transform: rotateZ(360deg);
+  }
+}

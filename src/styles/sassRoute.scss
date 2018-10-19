@@ -1,0 +1,15 @@
+@import "variables";
+
+// libraries
+@import 'bootstrap/scss/bootstrap.scss';
+
+// base
+@import "utils/typography";
+@import "base";
+@import "general";
+@import "common/weather";
+
+// pages
+@import 'pages/home';
+@import 'pages/weather';
+@import 'pages/search';

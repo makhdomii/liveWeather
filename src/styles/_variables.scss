@@ -1,0 +1,76 @@
+/* stylelint-disable */
+//colors
+$black: #000;
+$white: #fff;
+
+$navy:#1d1d43;
+$green:#7bbc41;
+$paleGreen:#B2D5A2;
+$darkGreen:#286E01;
+$red:#FC6D51;
+$orange:#E67D21;
+$blue:#4EC0E9;
+$navy:#2880B9;
+$purple:#A3A1FB;
+$gray:#898989;
+$lightGray:#F0F2F8;
+$lightGray-1:#BEBEBE;
+$theme-colors: (
+        "primary": #fff,
+        "secondary": #EDCB3B,
+        "success": #7bbc41,
+        "danger": #CB342C,
+        "warning": #ffd700,
+        "info": #2fb6f3,
+        "gray": #898989,
+        "light-gray": #f7f0f0,
+        "navy": #1d1d43  
+);
+
+
+$enable-gradients: false;
+
+// card
+$card-cap-bg: #fff;
+
+// sidebar
+$cr-sidebar-width: 224px;
+
+$border-color:$black;
+
+$colors: (
+  navy: $navy,
+  green: $green,
+  blue: $blue,
+  purple:$purple,
+  red: $red,
+  orange:$orange,
+  white:$white,
+  gray:$gray
+);
+$breakpoints: ("tiny": 480px, "small": 768px, "medium": 992px, "large": 1280px, "extra": 1920px);
+@mixin viewport($size, $base: up) {
+    $range: map-get($breakpoints, $size);
+    @if $range !=null {
+        @if $base==up {
+            @media only screen and (min-width: nth($range, 1)) {
+                @content;
+            }
+        }
+        @else {
+            @media only screen and (min-width: nth($range, 1)) and (max-width: nth($range, 2)) {
+                @content;
+            }
+        }
+    }
+}
+@mixin gen-props($prefix, $property) {
+  @each $color-name, $color in $colors {
+    .#{$prefix}-#{$color-name} {
+      #{$property}: $color
+    }
+  }
+}     
+
+@include gen-props('text', 'color');
+@include gen-props('bg', 'background');

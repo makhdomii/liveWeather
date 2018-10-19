@@ -1,0 +1,35 @@
+.search{
+    .container{
+        padding:20px;
+		border-radius:5px;
+        background-color:rgba(50, 50, 50, 0.5);
+        color:#aeaeae
+    }
+    .loadingModal{
+        position: absolute;
+        width:100vw;
+        height:100vh;
+        right:0;
+        left:0;
+        bottom:0;
+        top:0;
+        margin:auto;
+        background-color:rgba(0,0,0,0.8)
+    }
+    &--result{
+        p{
+            color:#000;
+        }
+        a{
+            display:block;
+            &:nth-child(even){
+                padding:10px 15px;
+                background-color:$lightGray;
+            }
+            &:nth-child(odd){
+                padding:10px 15px;
+                background-color:#fff;
+            }
+        }
+    }
+}
