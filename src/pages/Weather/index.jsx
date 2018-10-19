@@ -18,18 +18,8 @@ export default class Weather extends Component {
     };
   }
   componentWillMount() {
-    let d = new Date();
-    let a = d.toLocaleString(window.navigator.language, { weekday: 'long' });
-    console.log(a);
-    console.log('d ===>', d);
-    console.log(this.props.match.params.weoid);
     Api('GET', `?command=location&woeid=${this.props.match.params.weoid}`)
       .then(res => {
-        console.log(res.data);
-        // this.todayOfWeekConverter(
-        //   res.data.consolidated_weather[0].applicable_date
-        // );
-        // const option = { year: 'numeric', month: 'short', day: 'numeric' };
         this.setState({
           data: res.data,
           weather: res.data.consolidated_weather,

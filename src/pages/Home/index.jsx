@@ -8,7 +8,6 @@ import {
   InputGroup,
   InputGroupAddon
 } from 'reactstrap';
-// import { Rainy } from '../../common/weatherIcon'
 import { WeatherIcon } from '../../common/weatherIcon';
 import centigrade from '../../Assets/img/centigrade.svg';
 import max from '../../Assets/img/max.svg';
@@ -53,6 +52,7 @@ const weatherLocation = weather =>
       </Col>
     );
   });
+
 export default class home extends Component {
   constructor() {
     super();
@@ -64,17 +64,10 @@ export default class home extends Component {
   }
   apiProps = (res, location) => {
     this.dataFromServer[location] = res.data;
-    console.log('data from server =>', Object.keys(this.dataFromServer).length);
     if (Object.keys(this.dataFromServer).length > 5)
       this.setState({ loading: false });
   };
   componentWillMount() {
-    // London 44418
-    // Istanbul 2344116
-    // Berlin 638242
-    // Helsinki 565346
-    // Dublin 560743
-    // Vancouver 9807
     Api('GET', '?command=location&woeid=44418')
       .then(res => this.apiProps(res, 'London'))
       .catch(err => console.log(err));
@@ -95,12 +88,14 @@ export default class home extends Component {
       .catch(err => console.log(err));
   }
   search = () => {
-    let inputValue = document.getElementById('searchField').value.split(' ').join('+')
-    // console.log(this.props.histy)
-    if(inputValue.length > 2){
+    let inputValue = document
+      .getElementById('searchField')
+      .value.split(' ')
+      .join('+');
+    if (inputValue.length > 2) {
       this.props.history.push(`/search/${inputValue.toLowerCase()}`);
     }
-  }
+  };
   render() {
     if (this.state.loading) {
       return <div className="loading" />;
@@ -110,11 +105,17 @@ export default class home extends Component {
           <Container className="home--container">
             <Row className="justify-content-center mt-3 mb-3">
               <Col md={6}>
-              <h1 className="text-center mb-2 text-blue">Search your City</h1>
+                <h1 className="text-center mb-2 text-blue">Search your City</h1>
                 <InputGroup>
-                  <Input type="text" id="searchField" placeholder="For example: Dublin, berlin" />
+                  <Input
+                    type="text"
+                    id="searchField"
+                    placeholder="For example: Dublin, berlin"
+                  />
                   <InputGroupAddon addonType="prepend">
-                    <Button color="success" onClick={this.search}>Search</Button>
+                    <Button color="success" onClick={this.search}>
+                      Search
+                    </Button>
                   </InputGroupAddon>
                 </InputGroup>
               </Col>

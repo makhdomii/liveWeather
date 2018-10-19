@@ -21,14 +21,9 @@ export default class Search extends Component {
     this.keywords = '';
   }
   componentWillMount = () => {
-    // console.log(this.props);
     this.keywords = this.props.match.params.keyword.split('+').join(' ');
-    // setTimeout(() => {
-    //   this.setState({ loading: false });
-    // }, 1000);
     Api('GET', `?command=search&keyword=${this.keywords}`)
       .then(res => {
-        console.log(res);
         this.setState({ result: res.data,loading:false });
       })
       .catch(error => console.log(error));
@@ -37,11 +32,9 @@ export default class Search extends Component {
     let inputValue = document.getElementById('searchField').value;
     if (inputValue.length > 2) {
 			this.setState({loadApi:true})
-			console.log('search clicked !')
 			this.props.history.push(`/search/${inputValue.toLowerCase()}`);
 			Api('GET', `?command=search&keyword=${inputValue}`)
       .then(res => {
-				console.log(res)
 				this.setState({ result: res.data,loadApi:false });
       })
       .catch(error => console.log(error));
